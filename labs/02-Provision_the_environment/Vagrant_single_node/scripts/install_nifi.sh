@@ -12,5 +12,5 @@ sudo mv nifi-${NIFI_VERSION} /opt/
 sudo ln -s "/opt/nifi-${NIFI_VERSION}" /opt/nifi
 cd /opt/nifi
 sudo bin/nifi.sh install
-perl -p -i -e 's/8080/8090/g' /opt/nifi-1.12.1/conf/nifi.properties
+perl -p -i -e 's/8080/8090/g' /opt/nifi-${NIFI_VERSION}/conf/nifi.properties
 

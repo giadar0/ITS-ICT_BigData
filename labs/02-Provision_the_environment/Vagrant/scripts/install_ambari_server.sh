@@ -8,7 +8,7 @@ sudo yum install mysql-connector-java -y
 # Download Ambari Repository
 #wget -nv https://archive.cloudera.com/p/ambari/centos7/2.x/updates/2.7.5.0/ambari.repo -O /etc/yum.repos.d/ambari.repo
 #wget -nv http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.7.4.0/ambari.repo -O /etc/yum.repos.d/ambari.repo
-wget -O /etc/yum.repos.d/mosga.repo https://makeopensourcegreatagain.com/repos/centos/7/ambari/2.7.5.0/mosga-ambari.repo
+wget --no-check-certificate -O /etc/yum.repos.d/mosga.repo https://makeopensourcegreatagain.com/repos/centos/7/ambari/2.7.5.0/mosga-ambari.repo
 
 
 # Install java-1.8

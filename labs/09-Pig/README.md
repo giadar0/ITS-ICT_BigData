@@ -1344,3 +1344,62 @@ job_1599772615630_0005
 (M,76)
 2020-09-10 23:20:57,628 [main] INFO  org.apache.pig.Main - Pig script completed in 32 seconds and 966 milliseconds (32966 ms)
 ```
+
+## Run the examples on AWS EMR cluster
+
+As a prerequisite, you should have completed the EMR cluster creation procedure on lab 2, please [refer to](../02-Provision_the_environment/AWS/README.md)
+
+Upload the input dataset into the bucket (change the `--bucket` value with the one representing your bucket)
+
+```console
+$ aws s3api put-object --bucket its-ict-emr-bucket --key lab9_input/students.csv --body lab9_input/students.csv
+{
+  "ETag" : xyz
+}
+```
+
+Upload both the pig scripts into the bucket (change the `--bucket` value with the one representing your bucket)
+
+```console
+$ aws s3api put-object --bucket its-ict-emr-bucket --key script_EMR.pig --body script_EMR.pig
+{
+  "ETag" : xyz
+}
+```
+
+```console
+$ aws s3api put-object --bucket its-ict-emr-bucket --key script_grouping_EMR.pig --body script_grouping_EMR.pig
+{
+  "ETag" : xyz
+}
+```
+
+Delete the output folders in the case you already run this lab (change **its-ict-emr-bucket** with your bucket name)
+
+```console
+$ aws s3 rm --recursive s3://its-ict-emr-bucket/lab9_output/
+delete: s3://its-ict-emr-bucket/lab9_output/_SUCCESS
+delete: s3://its-ict-emr-bucket/lab9_output/part-v004-o000-r-00000
+```
+
+```console
+$ aws s3 rm --recursive s3://its-ict-emr-bucket/lab9_output_grouping/
+delete: s3://its-ict-emr-bucket/lab9_output_grouping/part-v001-o000-r-00000
+delete: s3://its-ict-emr-bucket/lab9_output_grouping/_SUCCESS
+```
+
+Now run the scripts on EMR cluster (change the `--cluster-id` value with the one representing your cluster and **its-ict-emr-bucket** with your bucket name)
+
+```console
+$ aws emr add-steps \
+  --cluster-id "j-2NKCDZKNTJ06" \
+  --steps Type=Pig,Name="lab9 script",ActionOnFailure=CONTINUE,Args=\[-f,s3://its-ict-emr-bucket/script_EMR.pig,-p,INPUT=s3://its-ict-emr-bucket/lab9_input/students.csv,-p,OUTPUT=s3://its-ict-emr-bucket/lab9_output\]
+```
+
+```console
+$ aws emr add-steps \
+  --cluster-id "j-2NKCDZKNTJ06" \
+  --steps Type=Pig,Name="lab9 script grouping",ActionOnFailure=CONTINUE,Args=\[-f,s3://its-ict-emr-bucket/script_grouping_EMR.pig,-p,INPUT=s3://its-ict-emr-bucket/lab9_input/students.csv,-p,OUTPUT=s3://its-ict-emr-bucket/lab9_output_grouping\]
+```
+
+Open the AWS console (https://s3.console.aws.amazon.com) and inspect the bucket to see if the output folders have been created and contain the result files.

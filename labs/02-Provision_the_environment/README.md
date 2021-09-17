@@ -15,3 +15,7 @@ Follow the instructions [here](Vagrant/README.md)
 ## Using Vagrant + Virtualbox + Ambari (single VM)
 
 Follow the instructions [here](Vagrant_single_node/README.md)
+
+## Using AWS Elastic Map Reduce 
+
+Follow the instructions [here](AWS/README.md)

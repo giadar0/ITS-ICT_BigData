@@ -11,6 +11,7 @@ Here's a list about the example included:
 - FlatMap + CountByValue (example name: WordCount, fully qualified main class: it.sunnyvale.academy.sparkrddsbasics.WordCount)
 - Distinct + Collect  (example name: DistinctExample, fully qualified main class: it.sunnyvale.academy.sparkrddsbasics.transformation.DistinctExample)
 - Join (example name: JoinExample, fully qualified main class: it.sunnyvale.academy.sparkrddsbasics.transformation.JoinExample)
+- Reduce (example name: ReduceExample, fully qualified main class: it.sunnyvale.academy.sparkrddsbasics.transformation.ReduceExample)
 
 
 ## Prerequisites
@@ -104,4 +105,52 @@ To kill an application:
 ```
 
 More at https://spark.apache.org/docs/2.2.1/rdd-programming-guide.html
+
+## Run the WordCount example on AWS EMR cluster
+
+As a prerequisite, you should have completed the EMR cluster creation procedure on lab 2, please [refer to](../02-Provision_the_environment/AWS/README.md)
+
+Upload the application jar in the bucket (replace bucket name with the one you used when provisioning the AWS EMR environment in lab 2)
+
+Please change the `--bucket` value with the one representing your bucket.
+
+```console
+$ aws s3api put-object --bucket its-ict-emr-bucket --key spark-rdds-basics-1.0-SNAPSHOT.jar --body target/spark-rdds-basics-1.0-SNAPSHOT.jar
+{
+  "ETag" : xyz
+}
+```
+
+Upload the input dataset (change the `--bucket` value with the one representing your bucket)
+
+```console
+$ aws s3api put-object --bucket its-ict-emr-bucket --key lab11_input/constitution.txt --body lab11_input/constitution.txt
+{
+  "ETag" : xyz
+}
+```
+
+Delete the output folder in the case you already run this lab (change **its-ict-emr-bucket** with your bucket name)
+
+```console
+$ aws s3 rm --recursive s3://its-ict-emr-bucket/lab11_output/
+delete: s3://its-ict-emr-bucket/lab11_output/part-00000
+delete: s3://its-ict-emr-bucket/lab11_output/part-00001
+delete: s3://its-ict-emr-bucket/lab11_output/_SUCCESS
+```
+
+Submit the job (change the `--cluster-id` value with the one representing your cluster and **its-ict-emr-bucket** with your bucket name)
+
+```console
+$ aws emr add-steps \
+  --cluster-id "j-2PWO1SLI4994A" \
+  --steps Type=Spark,Name="lab11",ActionOnFailure=CONTINUE,Args=\[--class,it.sunnyvale.academy.sparkrddsbasics.WordCount,s3://its-ict-emr-bucket/spark-rdds-basics-1.0-SNAPSHOT.jar,s3://its-ict-emr-bucket/lab11_input/constitution.txt,s3://its-ict-emr-bucket/lab11_output\]
+{
+    "StepIds": [
+        "s-2LEM06IK66SVP"
+    ]
+}
+```
+
+Open the AWS console (https://s3.console.aws.amazon.com) and inspect the bucket to see if the output folder has been created and contains the result file.
 

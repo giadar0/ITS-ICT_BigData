@@ -65,7 +65,9 @@ public class CodeMapReduce {
         FileUtils.deleteDirectory(new File(args[1]));
 
         Configuration conf = new Configuration();
-        Job job = Job.getInstance(conf, "word count");
+        //Job job = Job.getInstance(conf, "word count");
+        Job job = new Job(conf, "Hadoop Example for dynamically and programmatically compiling-running a job");
+        //job.getConfiguration().set("fs.file.impl", "com.conga.services.hadoop.patch.HADOOP_7682.WinLocalFileSystem");
         job.setJarByClass(CodeMapReduce.class);
         job.setMapperClass(MyMapper.class);
         job.setCombinerClass(MyReducer.class);

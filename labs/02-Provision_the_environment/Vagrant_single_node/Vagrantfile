@@ -9,6 +9,7 @@ Vagrant.configure(2) do |config|
       node1.vm.synced_folder "../../..", "/usr/src/git_repo"
       node1.vm.network "private_network", ip: "192.168.199.10"
       node1.vm.hostname = "hdp-singlenode.example.com"
+      node1.vm.provision "shell", inline: "echo 'sslverify=false' | sudo tee -a /etc/yum.conf"
       node1.vm.provision "shell", inline: "sudo systemctl stop firewalld"
       node1.vm.provision "shell", inline: "sudo systemctl disable firewalld"
       node1.vm.provision "shell", inline: "sudo yum install -y dos2unix"
@@ -27,6 +28,9 @@ Vagrant.configure(2) do |config|
       node1.vm.network "forwarded_port", guest: 8080, host: 8080
       node1.vm.network "forwarded_port", guest: 8090, host: 8090
       node1.vm.network "forwarded_port", guest: 3306, host: 3306
+      node1.vm.network "forwarded_port", guest: 50070, host: 50070
+      node1.vm.network "forwarded_port", guest: 8088, host: 8088
+      node1.vm.network "forwarded_port", guest: 8020, host: 8020
       node1.vm.provider "virtualbox" do |v|
         #v.memory = 4096
         v.memory = 6144
