@@ -28,7 +28,7 @@ $ spark-submit \
   --executor-memory 512m \
   --class it.sunnyvale.academy.sparkkafka.Main \
   --deploy-mode cluster \
-  target/spark-rdbms-1.0-SNAPSHOT.jar
+  target/spark-kafka-1.0-SNAPSHOT.jar
 
 $ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-producer.sh \
     --request-required-acks all \

@@ -80,7 +80,7 @@ public class DataFrameOperations {
                 .show();
 
         // Select people with name starting with L using Lambda
-        System.out.println("=== Select people younger than 21 using Lambda ===");
+        System.out.println("=== Select people with name starting with letter L ===");
         df
                 .filter((FilterFunction<Row>) row -> row
                                 .getAs("firstName")

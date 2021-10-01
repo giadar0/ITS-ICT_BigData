@@ -19,7 +19,12 @@ public class Main {
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         // Load dataset
-        JavaRDD<String> lines = sc.textFile("ass6_input/spacex_launches.csv");
+        JavaRDD<String> lines = null;
+        if(args.length > 0) {
+            lines = sc.textFile(args[0]);
+        }else {
+            lines = sc.textFile("ass6_input/spacex_launches.csv");
+        }
 
         long count = lines
                 // Skip CSV header
@@ -30,6 +35,8 @@ public class Main {
                 .filter(line -> line.equals("true"))
                 // Count result
                 .count();
+
+
 
         /*
 
@@ -47,6 +54,7 @@ public class Main {
         // Count result
         long count1 = rdd3.count();
         */
+
 
         System.out.println(count);
 

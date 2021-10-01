@@ -79,6 +79,6 @@ Run the application in the cluster
                      --executor-memory 512m \
                      --class it.sunnyvale.academy.sparkkafka.Main \
                      --deploy-mode cluster \
-                     target/spark-rdbms-1.0-SNAPSHOT.jar
+                     target/spark-kafka-1.0-SNAPSHOT.jar
 ```
 

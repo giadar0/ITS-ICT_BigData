@@ -92,7 +92,7 @@ public class Main {
         // Highest calories (SQL query)
         System.out.println(String.format("\n=== Highest calories (SQL query) ==="));
         spark
-                .sql("SELECT max(Calories) from activities WHERE Calories IS NOT NULL")
+                .sql("SELECT max(`Calories`) from activities WHERE Calories IS NOT NULL")
                 .show();
 
         // Max speed (DataFrame API)
