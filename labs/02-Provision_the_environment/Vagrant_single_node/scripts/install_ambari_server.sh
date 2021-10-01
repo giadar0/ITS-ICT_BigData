@@ -15,6 +15,10 @@ yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
 # Install ambari-server
 yum -y install ambari-server
 
+# Install Management Pack - HDP 3.1.4.0
+ambari-server install-mpack --mpack=https://github.com/steven-matison/dfhz_hdp_mpack/raw/master/hdp-ambari-mpack-3.1.4.0.tar.gz --verbose
+sudo ./flink_config.sh
+
 # bootstrap ambari-server
 ambari-server setup -s --java-home=/usr/lib/jvm/jre/
 

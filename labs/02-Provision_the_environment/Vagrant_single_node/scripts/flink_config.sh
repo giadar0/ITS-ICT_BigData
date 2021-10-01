@@ -1,0 +1,1 @@
+sudo cp ../config/flink*.xml /var/lib/ambari-server/resources/common-services/FLINK/1.9.3/configuration/
