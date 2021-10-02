@@ -51,9 +51,13 @@ jobmanager.rpc.address: localhost
 
 jobmanager.rpc.port: 6123
 
-jobmanager.heap.mb: 256
+# The heap size for the JobManager JVM
 
-taskmanager.heap.mb: 512
+jobmanager.heap.size: 1024m
+
+# The heap size for the TaskManager JVM
+
+taskmanager.heap.size: 1024m
 
 taskmanager.numberOfTaskSlots: 1
 
