@@ -25,13 +25,13 @@ Vagrant.configure(2) do |config|
       #node1.vm.provision "shell", path: "scripts/add_vagrant_user_to_ambari.sh"
       node1.vm.provision "shell", path: "scripts/install_nifi.sh"
       node1.vm.provision "shell", path: "scripts/install_mosquitto.sh"
-      node1.vm.network "forwarded_port", guest: 8080, host: 8080
-      node1.vm.network "forwarded_port", guest: 8090, host: 8090
-      node1.vm.network "forwarded_port", guest: 3306, host: 3306
-      node1.vm.network "forwarded_port", guest: 50070, host: 50070
-      node1.vm.network "forwarded_port", guest: 8088, host: 8088
-      node1.vm.network "forwarded_port", guest: 8020, host: 8020
-      node1.vm.network "forwarded_port", guest: 8081, host: 8081 # Flink
+      node1.vm.network "forwarded_port", guest: 8080, host: 8080, host_ip: "0.0.0.0", adapter: "eth1"
+      node1.vm.network "forwarded_port", guest: 8090, host: 8090, host_ip: "0.0.0.0", adapter: "eth1"
+      node1.vm.network "forwarded_port", guest: 3306, host: 3306, host_ip: "0.0.0.0", adapter: "eth1"
+      node1.vm.network "forwarded_port", guest: 50070, host: 50070, host_ip: "0.0.0.0", adapter: "eth1"
+      node1.vm.network "forwarded_port", guest: 8088, host: 8088, host_ip: "0.0.0.0", adapter: "eth1"
+      node1.vm.network "forwarded_port", guest: 8020, host: 8020, host_ip: "0.0.0.0", adapter: "eth1"
+      node1.vm.network "forwarded_port", guest: 8081, host: 8081, host_ip: "0.0.0.0", adapter: "eth1" # Flink
       node1.vm.provider "virtualbox" do |v|
         #v.memory = 4096
         v.memory = 6144

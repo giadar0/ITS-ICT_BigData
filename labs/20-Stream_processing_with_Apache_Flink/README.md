@@ -53,7 +53,7 @@ In the case of trouble, Flink installation/runtime logs are available at
 
 You might access the Flink Web Interface at http://localhost:8081 (or substitute **localhost** with the hostname where Flink has been started)
 
-YARN Web Interface is accessible at http://itsictbigdata-379-0.sunnyvale.academy:8088/
+YARN Web Interface is accessible at http://localhost:8088/ (or substitute **localhost** with the hostname where YARN Web Interface  has been started)
 
 In the case you need to kill applications submitted to YARN:
 
