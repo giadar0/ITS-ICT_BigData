@@ -53,8 +53,7 @@ In the case of trouble, Flink installation/runtime logs are available at
 To watch YARN logs (substitute **\<application ID\>** with Flink application id): 
 
 ```console
-[vagrant@node1 ~]$ 
-$ yarn logs -applicationId <application ID>
+[vagrant@node1 ~]$ yarn logs -applicationId <application ID>
 ```
 
 You might access the Flink Web Interface at http://localhost:8081 (or substitute **localhost** with the hostname where Flink has been started)
