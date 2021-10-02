@@ -43,13 +43,57 @@ In the case of trouble, Flink installation/runtime logs are available at
 
 ## Testing Flink installation
 
+Create the input dir:
+
 ```console
-[vagrant@node1 ~]$ sudo su - flink
+[flink@node1 ~]$ hadoop fs -mkdir lab20_input
+```
+
+Copy the input dataset:
+
+```console
+[flink@node1 ~]$ hadoop fs -put /usr/src/git_repo/datasets/constitution.txt lab20_input/constitution.txt
+```
+
+```console
 [flink@node1 ~]$ cd /opt/flink
 [flink@node1 ~]$ export HADOOP_CLASSPATH=`hadoop classpath`
 [flink@node1 ~]$ export HADOOP_CONF_DIR=/etc/hadoop/conf
-[flink@node1 ~]$ ./bin/flink run examples/streaming/WordCount.jar
+[flink@node1 ~]$ ./bin/flink run examples/streaming/WordCount.jar --input hdfs://node1.example.com:8020/user/vagrant/lab20_input/constitution.txt --output hdfs:/user/flink/lab20_output.txt
 ```
+
+Inspect the output
+
+```console
+[flink@node1 ~]$
+[flink@node1 flink]$ hadoop fs -cat lab20_output.txt
+...
+(law,39)
+(varying,1)
+(the,724)
+(compensation,5)
+(for,84)
+(the,725)
+(services,5)
+(of,493)
+(the,726)
+(senators,13)
+(and,264)
+(representatives,28)
+(shall,305)
+(take,6)
+(effect,4)
+(until,8)
+(an,18)
+(election,9)
+(of,494)
+(representatives,29)
+(shall,306)
+(have,63)
+(intervened,1)
+...
+```
+
 To watch YARN logs (substitute **\<application ID\>** with Flink application id): 
 
 ```console
