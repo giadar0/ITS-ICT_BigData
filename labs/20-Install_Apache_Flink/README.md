@@ -64,6 +64,7 @@ Copy the input dataset:
     examples/streaming/WordCount.jar  \
     --input hdfs://node1.example.com:8020/user/vagrant/lab20_input/constitution.txt \
     --output hdfs:/user/flink/lab20_output.txt
+
 SLF4J: Class path contains multiple SLF4J bindings.
 SLF4J: Found binding in [jar:file:/opt/flink/lib/slf4j-log4j12-1.7.15.jar!/org/slf4j/impl/StaticLoggerBinder.class]
 SLF4J: Found binding in [jar:file:/usr/hdp/3.1.4.0-315/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
