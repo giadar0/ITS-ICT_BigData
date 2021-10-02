@@ -48,14 +48,20 @@ In the case of trouble, Flink installation/runtime logs are available at
 [flink@node1 ~]$ cd /opt/flink
 [flink@node1 ~]$ export HADOOP_CLASSPATH=`hadoop classpath`
 [flink@node1 ~]$ export HADOOP_CONF_DIR=/etc/hadoop/conf
-[flink@node1 ~]$ ./bin/flink run ./examples/streaming/TopSpeedWindowing.jar
+[flink@node1 ~]$ ./bin/flink run examples/streaming/WordCount.jar
+```
+To watch YARN logs (substitute **\<application ID\>** with Flink application id): 
+
+```console
+[vagrant@node1 ~]$ 
+$ yarn logs -applicationId <application ID>
 ```
 
 You might access the Flink Web Interface at http://localhost:8081 (or substitute **localhost** with the hostname where Flink has been started)
 
 YARN Web Interface is accessible at http://localhost:8088/ (or substitute **localhost** with the hostname where YARN Web Interface  has been started)
 
-In the case you need to kill applications submitted to YARN:
+In the case you need to kill Flink over YARN  (substitute **\<application ID\>** with Flink application id):
 
 ```console
 [vagrant@node1 ~]$ yarn application -kill <application ID>
