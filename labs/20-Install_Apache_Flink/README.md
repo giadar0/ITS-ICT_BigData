@@ -1,4 +1,4 @@
-# Stream processing with Apache Flink
+# Install Apache Flink
 
 ## Prerequisites
 
