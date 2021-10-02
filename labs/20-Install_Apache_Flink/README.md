@@ -46,6 +46,7 @@ In the case of trouble, Flink installation/runtime logs are available at
 Create the input dir:
 
 ```console
+[vagrant@node1 ~]$ sudo su - flink
 [flink@node1 ~]$ hadoop fs -mkdir lab20_input
 ```
 
