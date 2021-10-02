@@ -87,7 +87,6 @@ Starting execution of program
 Inspect the output
 
 ```console
-[flink@node1 flink]$
 [flink@node1 flink]$ hadoop fs -cat lab20_output.txt
 ...
 (law,39)
