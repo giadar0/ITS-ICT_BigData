@@ -34,6 +34,13 @@ Click Deploy
 
 Remember to restart all the services if needed
 
+In the case of trouble, Flink installation/runtime logs are available at
+
+```console
+[vagrant@node1 ~]$ tail -500f /var/log/flink/flink-setup.log
+...
+```
+
 ## Testing Flink installation
 
 ```console
@@ -45,3 +52,11 @@ Remember to restart all the services if needed
 ```
 
 You might access the Flink Web Interface at http://localhost:8081 (or substitute **localhost** with the hostname where Flink has been started)
+
+YARN Web Interface is accessible at http://itsictbigdata-379-0.sunnyvale.academy:8088/
+
+In the case you need to kill applications submitted to YARN:
+
+```console
+[vagrant@node1 ~]$ yarn application -kill <application ID>
+```
