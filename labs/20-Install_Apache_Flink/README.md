@@ -58,15 +58,15 @@ Copy the input dataset:
 
 ```console
 [flink@node1 ~]$ cd /opt/flink
-[flink@node1 ~]$ export HADOOP_CLASSPATH=`hadoop classpath`
-[flink@node1 ~]$ export HADOOP_CONF_DIR=/etc/hadoop/conf
-[flink@node1 ~]$ ./bin/flink run examples/streaming/WordCount.jar --input hdfs://node1.example.com:8020/user/vagrant/lab20_input/constitution.txt --output hdfs:/user/flink/lab20_output.txt
+[flink@node1 flink]$ export HADOOP_CLASSPATH=`hadoop classpath`
+[flink@node1 flink]$ export HADOOP_CONF_DIR=/etc/hadoop/conf
+[flink@node1 flink]$ ./bin/flink run examples/streaming/WordCount.jar --input hdfs://node1.example.com:8020/user/vagrant/lab20_input/constitution.txt --output hdfs:/user/flink/lab20_output.txt
 ```
 
 Inspect the output
 
 ```console
-[flink@node1 ~]$
+[flink@node1 flink]$
 [flink@node1 flink]$ hadoop fs -cat lab20_output.txt
 ...
 (law,39)
