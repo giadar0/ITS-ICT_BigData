@@ -60,7 +60,27 @@ Copy the input dataset:
 [flink@node1 ~]$ cd /opt/flink
 [flink@node1 flink]$ export HADOOP_CLASSPATH=`hadoop classpath`
 [flink@node1 flink]$ export HADOOP_CONF_DIR=/etc/hadoop/conf
-[flink@node1 flink]$ ./bin/flink run examples/streaming/WordCount.jar --input hdfs://node1.example.com:8020/user/vagrant/lab20_input/constitution.txt --output hdfs:/user/flink/lab20_output.txt
+[flink@node1 flink]$ ./bin/flink run \
+    examples/streaming/WordCount.jar  \
+    --input hdfs://node1.example.com:8020/user/vagrant/lab20_input/constitution.txt \
+    --output hdfs:/user/flink/lab20_output.txt
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/opt/flink/lib/slf4j-log4j12-1.7.15.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/3.1.4.0-315/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+2021-10-02 13:01:24,493 INFO  org.apache.flink.yarn.cli.FlinkYarnSessionCli                 - Found Yarn properties file under /tmp/.yarn-properties-flink.
+2021-10-02 13:01:24,493 INFO  org.apache.flink.yarn.cli.FlinkYarnSessionCli                 - Found Yarn properties file under /tmp/.yarn-properties-flink.
+2021-10-02 13:01:24,877 INFO  org.apache.flink.yarn.cli.FlinkYarnSessionCli                 - YARN properties set default parallelism to 1
+2021-10-02 13:01:24,877 INFO  org.apache.flink.yarn.cli.FlinkYarnSessionCli                 - YARN properties set default parallelism to 1
+YARN properties set default parallelism to 1
+2021-10-02 13:01:25,159 INFO  org.apache.hadoop.yarn.client.RMProxy                         - Connecting to ResourceManager at node1.example.com/192.168.199.2:8050
+2021-10-02 13:01:25,459 INFO  org.apache.hadoop.yarn.client.AHSProxy                        - Connecting to Application History server at node2.example.com/192.168.199.3:10200
+2021-10-02 13:01:25,470 INFO  org.apache.flink.yarn.cli.FlinkYarnSessionCli                 - No path for the flink jar passed. Using the location of class org.apache.flink.yarn.YarnClusterDescriptor to locate the jar
+2021-10-02 13:01:25,470 INFO  org.apache.flink.yarn.cli.FlinkYarnSessionCli                 - No path for the flink jar passed. Using the location of class org.apache.flink.yarn.YarnClusterDescriptor to locate the jar
+2021-10-02 13:01:25,612 INFO  org.apache.flink.yarn.AbstractYarnClusterDescriptor           - Found application JobManager host name 'node2.example.com' and port '32973' from supplied application id 'application_1633173902900_0004'
+Starting execution of program
+...
 ```
 
 Inspect the output
