@@ -55,7 +55,7 @@ You should see the three boker instances in the **Brokers** section.
 Create a topic with a single partition.
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --create \
     --topic my-single-partition-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181 \
@@ -75,7 +75,7 @@ From Kafka Tool, if you select the topic you can see that it has a single partit
 You get the same information using the Kafka's command line utilities
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --describe \
     --topic my-single-partition-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181
@@ -90,7 +90,7 @@ This topic is not partitioned nor replicated, what happens if the current partit
 After having stopped the Kafka partition leader, you can see now that the following command returns "Leader: -1" for the topic **my-single-partition-topic**
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --describe \
     --topic my-single-partition-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181
@@ -101,7 +101,7 @@ Topic:my-single-partition-topic PartitionCount:1        ReplicationFactor:1     
 If you try sending message to this topic you get
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-producer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-producer.sh \
     --topic my-single-partition-topic \
     --broker-list node1.example.com:6667,node2.example.com:6667,node3.example.com:6667
 >ciao
@@ -136,7 +136,7 @@ In this scenario we proved that a non replicated partition lead to an inconsiste
 Create a single partition, replicated topic.
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --create \
     --topic my-single-partition-replicated-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181 \
@@ -148,7 +148,7 @@ Created topic "my-single-partition-replicated-topic".
 Describe the newly created topic
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --describe \
     --topic my-single-partition-replicated-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181
@@ -159,7 +159,7 @@ Topic:my-single-partition-replicated-topic      PartitionCount:1        Replicat
 You now see that this topic has a single partition but with **ReplicationFactor** equals to 3 and the leader is broker 1002 (the one on node3).
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --alter \
     --config min.insync.replicas=2 \
     --topic my-single-partition-replicated-topic \
@@ -172,7 +172,7 @@ Updated config for topic "my-single-partition-replicated-topic".
 Describe the topic once again:
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --describe \
     --topic my-single-partition-replicated-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181
@@ -185,7 +185,7 @@ The min.insync.replicas topic configuration appears in the output.
 Start producing messages to this topic
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-producer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-producer.sh \
     --request-required-acks all \
     --topic my-single-partition-replicated-topic \
     --broker-list node1.example.com:6667,node2.example.com:6667,node3.example.com:6667
@@ -199,7 +199,7 @@ Start producing messages to this topic
 By opening a new terminal, start consuming messages:
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-single-partition-replicated-topic \
     --from-beginning \
     --bootstrap-server node1.example.com:6667
@@ -217,7 +217,7 @@ What happens if we shutdown the partition leader?
 
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --describe \
     --topic my-single-partition-replicated-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181
@@ -230,7 +230,7 @@ The leader has changed (1003) and the old one disappeared from the the in-sync r
 If we produce a message:
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-producer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-producer.sh \
     --request-required-acks all \
     --topic my-single-partition-replicated-topic \
     --broker-list node1.example.com:6667,node2.example.com:6667,node3.example.com:6667
@@ -243,7 +243,7 @@ If we produce a message:
 The message still reached the consumer:
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-single-partition-replicated-topic \
     --from-beginning \
     --bootstrap-server node1.example.com:6667
@@ -255,7 +255,7 @@ What if we start all the brokers?
 ![](img/11.png)
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --describe \
     --topic my-single-partition-replicated-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181
