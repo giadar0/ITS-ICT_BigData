@@ -101,7 +101,7 @@ Start the first consumer:
 
 ```
 
-And by opening a new terminal, start a new consumer in the same group
+And by opening a new terminal, start a new consumer
 
 ```console
 [vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
