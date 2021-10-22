@@ -3,7 +3,8 @@ export NIFI_VERSION=1.12.1
 rm -rf /tmp/apache-nifi 
 mkdir /tmp/apache-nifi -p
 cd /tmp/apache-nifi
-wget ftp://mirror.nohup.it/apache/nifi/${NIFI_VERSION}/nifi-${NIFI_VERSION}-bin.tar.gz 
+#wget ftp://mirror.nohup.it/apache/nifi/${NIFI_VERSION}/nifi-${NIFI_VERSION}-bin.tar.gz 
+wget https://archive.apache.org/dist/nifi/${NIFI_VERSION}/nifi-${NIFI_VERSION}-bin.tar.gz
 
 
 tar -zxf nifi-${NIFI_VERSION}-bin.tar.gz 
