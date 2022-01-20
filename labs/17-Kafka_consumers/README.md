@@ -13,7 +13,7 @@ Open two terminals on node1, node2, node3 VMs. The following commands will repor
 Create a partitioned topic
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --create \
     --topic my-partitioned-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181 \
@@ -25,7 +25,7 @@ Created topic "my-partitioned-topic".
 This topic has been splitted in 3 partitions:
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --describe \
     --topic my-partitioned-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181
@@ -42,7 +42,7 @@ Observe that each partition has a different leader (3 partitions, 3 brokers).
 Produce 3 messages
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-producer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-producer.sh \
     --request-required-acks all \
     --topic my-partitioned-topic \
     --broker-list node1.example.com:6667,node2.example.com:6667,node3.example.com:6667
@@ -58,7 +58,7 @@ Produce 3 messages
 If you consume messages from a one partition at a time, you observe that message we published earlier have been sent to all the three partitions
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-partitioned-topic \
     --from-beginning \
     --partition 0 \
@@ -69,7 +69,7 @@ Processed a total of 1 messages
 ```
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-partitioned-topic \
     --from-beginning \
     --partition 1 \
@@ -80,7 +80,7 @@ Processed a total of 1 messages
 ```
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-partitioned-topic \
     --from-beginning \
     --partition 2 \
@@ -95,16 +95,16 @@ Processed a total of 1 messages
 Start the first consumer:
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-partitioned-topic \
     --bootstrap-server node1.example.com:6667
 
 ```
 
-And by opening a new terminal, start a new consumer in the same group
+And by opening a new terminal, start a new consumer
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-partitioned-topic \
     --bootstrap-server node1.example.com:6667
 
@@ -114,7 +114,7 @@ If you publish a message
 
 
 ```console
-[vagrant@node3 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-producer.sh \
+[vagrant@node3 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-producer.sh \
     --request-required-acks all \
     --topic my-partitioned-topic \
     --broker-list node1.example.com:6667,node2.example.com:6667,node3.example.com:6667
@@ -126,14 +126,14 @@ If you publish a message
 you should see that both consumers received it:
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
       --topic my-partitioned-topic \
       --bootstrap-server node1.example.com:6667
 message 4
 ```
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
       --topic my-partitioned-topic \
       --bootstrap-server node1.example.com:6667
 message 4
@@ -147,7 +147,7 @@ Different Kafka cosumers subscribed to the same topic reveive all the messages.
 Start the first consumer:
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-partitioned-topic \
     --group my-consumer-group \
     --bootstrap-server node1.example.com:6667
@@ -157,7 +157,7 @@ Start the first consumer:
 And by opening a new terminal, start a new consumer in the same group
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-partitioned-topic \
     --group my-consumer-group \
     --bootstrap-server node1.example.com:6667
@@ -168,7 +168,7 @@ If you publish a message
 
 
 ```console
-[vagrant@node3 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-producer.sh \
+[vagrant@node3 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-producer.sh \
     --request-required-acks all \
     --topic my-partitioned-topic \
     --broker-list node1.example.com:6667,node2.example.com:6667,node3.example.com:6667
@@ -180,7 +180,7 @@ If you publish a message
 you should see that only one consumer received it (in my case the one started in node2):
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic my-partitioned-topic \
     --group my-consumer-group \
     --bootstrap-server node1.example.com:6667
@@ -196,7 +196,7 @@ When you start a consumer, it start receiving messages from that point in time o
 If you want to receive messages from the beginning for a particular topic
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
      --topic my-partitioned-topic \
      --from-beginning \
      --bootstrap-server node1.example.com:6667
@@ -212,7 +212,7 @@ Messages are not ordered since the have been spread to all the topic's partition
 If you want to receive messages from a specific offset of a single partition
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
      --topic my-partitioned-topic \
      --offset 1 \
      --partition 1 \

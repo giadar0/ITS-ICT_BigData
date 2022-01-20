@@ -15,7 +15,7 @@ $ vagrant ssh node1
 Create Kafka topic
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --create \
     --topic nifi \
     --zookeeper localhost:2181 \
@@ -26,7 +26,7 @@ Create Kafka topic
 Describe the topic to see if everything is ok
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh  \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh  \
     --describe \
     --topic nifi \
     --zookeeper localhost:2181
@@ -130,7 +130,7 @@ Publish a MQTT message
 Start consuming Kafka messages
 
 ```
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic nifi \
     --from-beginning \
     --bootstrap-server $(hostname):6667

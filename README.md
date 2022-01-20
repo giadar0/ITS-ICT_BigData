@@ -42,6 +42,8 @@
 
 [19 - Apache Nifi MQTT to Kafka](labs/19-Apache_Nifi_MQTT_to_Kafka/README.md)
 
+[20 - Install Apache Flink](labs/20-Install_Apache_Flink/README.md)
+
 ## Assignments
 
 [01 - PV energy production insights with MapReduce](assignments/01-PV_energy_production_insights_with_MapReduce/README.md)

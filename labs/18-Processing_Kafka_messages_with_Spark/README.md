@@ -10,7 +10,7 @@
 Create the topic
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --create \
     --topic my-spark-topic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181 \
@@ -34,7 +34,7 @@ Batch: 0
 Publish a message on Kafka
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-producer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-producer.sh \
     --request-required-acks all \
     --topic my-spark-topic \
     --broker-list node1.example.com:6667,node2.example.com:6667,node3.example.com:6667

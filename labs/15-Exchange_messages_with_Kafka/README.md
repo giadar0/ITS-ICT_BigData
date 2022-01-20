@@ -16,7 +16,7 @@ Alternatively, you can use only one VM (node1 for example), just make sure to mo
 List brokers:
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/zookeeper-shell.sh localhost:2181 ls /brokers/ids
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/zookeeper-shell.sh localhost:2181 ls /brokers/ids
 Connecting to localhost:2181
 
 WATCHER::
@@ -28,7 +28,7 @@ WatchedEvent state:SyncConnected type:None path:null
 Create a single-partition, non replicated topic
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --create \
     --topic mytopic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181 \
@@ -40,7 +40,7 @@ Created topic "mytopic".
 Describe the topic
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --describe \
     --topic mytopic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181
@@ -51,7 +51,7 @@ Topic:mytopic   PartitionCount:1        ReplicationFactor:1     Configs:
 List all the topics
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --list \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181
 mytopic
@@ -60,7 +60,7 @@ mytopic
 From node2, start consuming messages:
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh \
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh \
     --topic mytopic \
     --bootstrap-server node1.example.com:6667
 ``` 
@@ -69,7 +69,7 @@ From node2, start consuming messages:
 From node1, send messages:
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-producer.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-producer.sh \
     --topic mytopic \
     --broker-list node1.example.com:6667,node2.example.com:6667,node3.example.com:6667
 >ciao
@@ -81,7 +81,7 @@ From node1, send messages:
 On node2, messages have been received successfully:
 
 ```console
-[vagrant@node2 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-console-consumer.sh --topic mytopic --bootstrap-server node1.example.com:6667
+[vagrant@node2 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-console-consumer.sh --topic mytopic --bootstrap-server node1.example.com:6667
 ciao
 mondo
 ``` 
@@ -89,7 +89,7 @@ mondo
 Delete the topic
 
 ```console
-[vagrant@node1 ~]$ /usr/hdp/3.1.0.0-78/kafka/bin/kafka-topics.sh \
+[vagrant@node1 ~]$ /usr/hdp/3.1.4.0-315/kafka/bin/kafka-topics.sh \
     --delete \
     --topic mytopic \
     --zookeeper node1.example.com:2181,node2.example.com:2181,node3.example.com:2181

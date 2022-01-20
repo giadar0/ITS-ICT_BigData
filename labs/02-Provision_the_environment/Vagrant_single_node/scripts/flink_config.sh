@@ -1,0 +1,2 @@
+sudo cp /vagrant/config/flink-ambari-config.xml /var/lib/ambari-server/resources/common-services/FLINK/1.9.3/configuration/
+sudo cp /vagrant/config/flink-env.xml /var/lib/ambari-server/resources/common-services/FLINK/1.9.3/configuration/
